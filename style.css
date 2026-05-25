@@ -1,0 +1,311 @@
+
+body {
+    font-family: 'Times New Roman', serif;
+    background-color: #0c074e;
+    color: #ffffff;
+    padding: 40px;
+    font-size: 15px; /* ← réduit de 30px à 15px */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ← centre tout */
+
+}
+
+img {
+    clear:"photo";
+    width: 220px;
+    height: 220px;
+    object-fit: cover; /* ← garde les proportions dans le cercle */
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.3); 
+    display: block;
+    margin: 20px auto; /* ← centre l'image */
+}
+
+
+.accord {
+    width: 500px;
+    margin: 40px auto;
+    text-align: left; /* ← ajoute ça */
+}
+
+ 
+
+
+.item {
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+}
+
+.titre {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 2px;
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    font-family: 'Times New Roman', serif;
+    letter-spacing: 0.05em;
+    text-align: left; /* ← ajoute ça */
+}
+
+.titre:hover {
+    opacity: 0.7;
+}
+
+.titre:focus {
+    outline: none;
+}
+
+.check {
+    color: white;
+    font-size: 14px;
+    margin-right: 10px;
+    opacity: 0;  /* caché par défaut */
+    transition: opacity 0.2s;
+}
+
+.check.visible {
+    opacity: 1;
+}
+
+.fleche {
+    font-size: 15px;
+    transition: transform 0.3s ease;
+}
+
+.contenu {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 4px;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    font-size: 30px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.03em;
+}
+.db-section {
+    width: 500px;
+    margin: 20px auto 40px;
+        margin-top: 40px; /* ← ici dans le CSS */
+        margin-bottom : 40px; /* ← ici dans le CSS */
+}
+
+.db-titre {
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+    font-weight: normal;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 10px;
+}
+
+.search-wrap {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 20px;
+    background: rgba(255,255,255,0.05);
+}
+
+.search-icon {
+    font-size: 18px;
+    margin-right: 10px;
+    color: rgba(255,255,255,0.4);
+}
+
+.search-wrap input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 14px;
+    font-family: 'Times New Roman', serif;
+    width: 100%;
+}
+
+.search-wrap input::placeholder {
+    color: rgba(255,255,255,0.3);
+}
+
+.search-wrap:focus-within {
+    border-color: rgba(255,255,255,0.6);
+}
+
+.projets-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.projet-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 16px;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.projet-card:hover {
+    border-color: rgba(255,255,255,0.4);
+    transform: translateY(-3px);
+     box-shadow: 0 0 20px rgba(255,255,255,0.05)
+}
+
+.projet-lang {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.projet-titre {
+    font-size: 14px;
+    font-weight: normal;
+    margin-bottom: 8px;
+    letter-spacing: 0.03em;
+}
+
+.projet-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.projet-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.tag {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.5);
+}
+
+.no-result {
+    text-align: center;
+    color: rgba(255,255,255,0.3);
+    font-size: 13px;
+    margin-top: 20px;
+}
+
+.poisson1 {
+    position: fixed;
+    font-size: 40px;
+    bottom: 20%;
+    left: -100px;
+    z-index: 0;
+    animation: nager 8s linear infinite;
+    transform: scaleX(1); /* ← retourne l'image */
+animation-direction: reverse; /* ← part de droite */
+bottom: 20%; 
+z-index: -1; /* ← derrière tout le monde */
+}
+
+@keyframes nager {
+    0%   { left: -100px; }
+    100% { left: 110%; }
+}
+
+.poisson2 {
+    position: fixed;
+    font-size: 40px;
+    bottom: 20%;
+    left: -100px;
+    z-index: 0;
+    animation: nager 20s linear infinite;
+    transform: scaleX(-1); /* ← retourne l'image */
+animation-direction: normal; /* ← part de gauche */
+bottom: 50%; 
+z-index: -1; /* ← derrière tout le monde */
+}
+
+@keyframes nager {
+    0%   { left: -100px; }
+    100% { left: 110%; }
+}
+
+.poisson3 {
+    position: fixed;
+    font-size: 40px;
+    bottom: 20%;
+    left: -100px;
+    z-index: 0;
+    animation: nager 15s linear infinite;
+    transform: scaleX(-1); /* ← retourne l'image */
+animation-direction: normal; /* ← part de gauche */
+bottom: 80%; 
+z-index: -1; /* ← derrière tout le monde */
+}
+
+@keyframes nager {
+    0%   { left: -100px; }
+    100% { left: 110%; }
+}
+
+#loginOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0c074e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    gap: 16px;
+}
+
+#loginOverlay h2 {
+    font-size: 28px;
+    letter-spacing: 0.2em;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+#loginOverlay input {
+    width: 300px;
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 8px;
+    color: white;
+    font-size: 15px;
+    font-family: 'Times New Roman', serif;
+    outline: none;
+}
+
+#loginOverlay input:focus {
+    border-color: rgba(255,255,255,0.6);
+}
+
+#loginOverlay button {
+    width: 300px;
+    padding: 14px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
+    color: white;
+    font-size: 15px;
+    font-family: 'Times New Roman', serif;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+#loginOverlay button:hover {
+    background: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.6);
+}

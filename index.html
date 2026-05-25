@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire</title>
+    <meta name="description" content="ceci est la page d'acceuil">
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+<div id="loginOverlay">
+    <h2>⚿ Accès Privé</h2>
+    <input type="text" id="Username" placeholder="Username">
+    <input type="password" id="Password" placeholder="Password">
+    <button onclick="login()">Entrer</button>
+    <p id="erreur" style="display:none; color:red;">Identifiants incorrects</p>
+</div>
+
+    <!-- 1. TITRE -->
+    <h1>Mon Portfolio fait par Tristan Dev</h1>
+    <h2>Informations Personnelles</h2>
+
+    <!-- 2. ACCORDÉONS -->
+    <div class="accord">
+
+        <div class="item">
+            <button class="titre" onclick="toggle(this)">
+                <span><span class="check">✓</span> Prénom & Nom</span>
+                <span class="fleche">∧</span>
+            </button>
+            <div class="contenu"><p>Quero, Tristan</p></div>
+        </div>
+
+        <div class="item">
+            <button class="titre" onclick="toggle(this)">
+                <span><span class="check">✓</span> Age</span>
+                <span class="fleche">∧</span>
+            </button>
+            <div class="contenu"><p>15 ans</p></div>
+        </div>
+
+        <div class="item">
+            <button class="titre" onclick="toggle(this)">
+                <span><span class="check">✓</span> Temps de Developpement</span>
+                <span class="fleche">∧</span>
+            </button>
+            <div class="contenu"><p>2 jours</p></div>
+        </div>
+
+        <div class="item">
+            <button class="titre" onclick="toggle(this)">
+                <span><span class="check">✓</span> École</span>
+                <span class="fleche">∧</span>
+            </button>
+            <div class="contenu"><p>???</p></div>
+        </div>
+
+        <div class="item">
+            <button class="titre" onclick="toggle(this)">
+                <span><span class="check">✓</span> Email</span>
+                <span class="fleche">∧</span>
+            </button>
+            <div class="contenu"><p>tristanquero84@gmail.com</p></div>
+        </div>
+
+        <div class="item">
+            <button class="titre" onclick="toggle(this)">
+                <span><span class="check">✓</span> GitHub</span>
+                <span class="fleche">∧</span>
+            </button>
+            <div class="contenu">
+                <a href="https://github.com/lokisaur" target="_blank">
+                    https://github.com/lokisaur
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <!-- 3. IMAGE -->
+    <img src="Tristan PRIME.jpg" alt="Tristan PRIME">
+
+    <!-- 4. PROJETS -->
+    <div class="db-section">
+        <h2 class="db-titre">Mes Projets</h2>
+        
+        <div class="search-wrap">
+            <span class="search-icon">⌕</span>
+            <input type="text" id="searchBar" placeholder="Rechercher un projet..." oninput="filtrer()">
+        </div>
+
+        <div class="projets-grid" id="projets">
+
+            <div class="projet-card" data-tags="python jeu terminal">
+                <div class="projet-lang">Python</div>
+                <h3 class="projet-titre">Mini-jeu — Devine le nombre</h3>
+                <p class="projet-desc">Jeu en terminal : devine un nombre entre 1 et 100 en 10 essais max. Réalisé en 1 heure.</p>
+                <div class="projet-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Terminal</span>
+                    <span class="tag">Jeu</span>
+                </div>
+            </div>
+
+            <div class="projet-card" data-tags="roblox lua luau jeu">
+                <div class="projet-lang">Lua</div>
+                <h3 class="projet-titre">Jeu Roblox</h3>
+                <p class="projet-desc">Projet en cours sur Roblox Studio en Luau. Scripting de mécaniques de jeu et interfaces.</p>
+                <div class="projet-tags">
+                    <span class="tag">Lua</span>
+                    <span class="tag">Roblox</span>
+                    <span class="tag">En cours</span>
+                </div>
+            </div>
+
+            <div class="projet-card" data-tags="csharp scp plugin exiled">
+                <div class="projet-lang">C#</div>
+                <h3 class="projet-titre">Plugin Dark RP — SCP:SL</h3>
+                <p class="projet-desc">Plugin EXILED pour SCP: Secret Laboratory. Système Dark RP : les joueurs spawnen en Overwatch avant la brèche.</p>
+                <div class="projet-tags">
+                    <span class="tag">C#</span>
+                    <span class="tag">EXILED</span>
+                    <span class="tag">SCP:SL</span>
+                </div>
+            </div>
+
+            <div class="projet-card" data-tags="html css portfolio web">
+                <div class="projet-lang">HTML/CSS</div>
+                <h3 class="projet-titre">Ce site web</h3>
+                <p class="projet-desc">Portfolio personnel fait from scratch en HTML et CSS. Accordéons, recherche, style dark.</p>
+                <div class="projet-tags">
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">JS</span>
+                </div>
+            </div>
+
+        </div>
+        <p class="no-result" id="noResult" style="display:none">Aucun projet trouvé 😕</p>
+    </div>
+    <!--5. Les poissons pour le style-->
+    <div class="poisson1">🐟</div>
+<div class="poisson2">🐡</div>
+<div class="poisson3">🐠</div>
+    <!--6. JAVASCRIPT -->
+    <script>
+        function filtrer() {
+            var val = document.getElementById('searchBar').value.toLowerCase();
+            var cards = document.querySelectorAll('.projet-card');
+            var visible = 0;
+            cards.forEach(function(card) {
+                var tags = card.getAttribute('data-tags');
+                var titre = card.querySelector('.projet-titre').textContent.toLowerCase();
+                var desc = card.querySelector('.projet-desc').textContent.toLowerCase();
+                if (tags.includes(val) || titre.includes(val) || desc.includes(val)) {
+                    card.style.display = 'block';
+                    visible++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            document.getElementById('noResult').style.display = visible === 0 ? 'block' : 'none';
+        }
+
+        function toggle(btn) {
+            var contenu = btn.nextElementSibling;
+            var fleche = btn.querySelector('.fleche');
+            var check = btn.querySelector('.check');
+            var estOuvert = contenu.style.maxHeight;
+        
+        
+            document.querySelectorAll('.contenu').forEach(function(c){
+                c.style.maxHeight = null;
+                c.style.padding = '0 4px';
+            });
+            document.querySelectorAll('.fleche').forEach(function(f){
+                f.style.transform = 'rotate(0deg)';
+                f.textContent = '∧';
+            });
+            document.querySelectorAll('.check').forEach(function(c){ 
+                c.classList.remove('visible');
+        });
+
+            if (!estOuvert){
+                contenu.style.maxHeight = contenu.scrollHeight + 'px';
+                contenu.style.padding = '4px 4px 16px';
+                fleche.style.transform = 'rotate(180deg)';
+                check.classList.add('visible');
+            }
+        }
+function login() {
+
+    var user = document.getElementById('Username').value;
+    var pass = document.getElementById('Password').value;
+
+
+    if (user === 'Tristan' && pass === '1980'){
+        document.getElementById('loginOverlay').style.display = 'none';
+}
+     else{
+        document.getElementById('erreur').style.display = 'block';
+     }
+    }
+</script>
+
+</body>
+</html> 
